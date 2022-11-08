@@ -3,6 +3,7 @@ package controller;
 
 import entity.Rol;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import service.IRolService;
 import service.RolServiceImpl;
@@ -23,6 +24,20 @@ public class RolController {
             fila[1]=rol.getRol();
             //rol.getRol();
             modelo.addRow(fila);
+        }
+    }
+    public void buscarRegistro(int id){
+        List<Rol> listaRol=service.obtenerRegistro();
+        int bandera=0;
+        for (Rol rol : listaRol) {
+            if(rol.getIdRol()==id){
+                JOptionPane.showMessageDialog(null, rol.getRol());
+                bandera=1;
+                break;
+            }
+        }
+        if(bandera==0){
+            JOptionPane.showMessageDialog(null, "Registro no encontrado");
         }
     }
 }
