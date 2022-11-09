@@ -59,6 +59,11 @@ public class RolView extends javax.swing.JFrame {
                 "id", "Rol"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setText("mostrar");
@@ -155,6 +160,11 @@ public class RolView extends javax.swing.JFrame {
         RolController controller=new RolController();
         controller.buscarRegistro(Integer.parseInt(jTextField1.getText()));
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        RolController controller=new RolController();
+        controller.buscarRegistro(Integer.parseInt((String) jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
