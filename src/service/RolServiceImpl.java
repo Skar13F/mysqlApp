@@ -18,5 +18,15 @@ public class RolServiceImpl implements IRolService{
     public List<Rol> obtenerRegistro() {
         return model.obtenerRegistro();
     }
+
+    @Override
+    public void eliminarRegistro(Rol rol) {
+        model.eliminarRegistro(rol);
+    }
+
+    @Override
+    public Rol buscarRegistro(int id) {
+        return model.buscarRegistro(id);
+    }
     
 }

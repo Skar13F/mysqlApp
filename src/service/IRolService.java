@@ -7,4 +7,6 @@ import java.util.List;
 public interface IRolService {
     public void insertarRegistro(Rol rol);
     public List<Rol> obtenerRegistro();
+    public void eliminarRegistro(Rol rol);
+    public Rol buscarRegistro(int id);
 }

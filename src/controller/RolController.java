@@ -26,18 +26,23 @@ public class RolController {
             modelo.addRow(fila);
         }
     }
-    public void buscarRegistro(int id){
-        List<Rol> listaRol=service.obtenerRegistro();
-        int bandera=0;
-        for (Rol rol : listaRol) {
-            if(rol.getIdRol()==id){
-                JOptionPane.showMessageDialog(null, rol.getRol());
-                bandera=1;
-                break;
-            }
-        }
-        if(bandera==0){
-            JOptionPane.showMessageDialog(null, "Registro no encontrado");
-        }
+    public Rol buscarRegistro(int id){
+//        List<Rol> listaRol=service.obtenerRegistro();
+//        int bandera=0;
+//        for (Rol rol : listaRol) {
+//            if(rol.getIdRol()==id){
+//                JOptionPane.showMessageDialog(null, rol.getRol());
+//                bandera=1;
+//                break;
+//            }
+//        }
+//        if(bandera==0){
+//            JOptionPane.showMessageDialog(null, "Registro no encontrado");
+//        }
+        
+        return  service.buscarRegistro(id);
+    }
+    public void eliminarRegistro(Rol rol){
+        service.eliminarRegistro(rol);
     }
 }
