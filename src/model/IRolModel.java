@@ -11,4 +11,5 @@ public interface IRolModel {
     public void imprimir(List<Rol> lista);
     public void eliminarRegistro(Rol rol);
     public Rol buscarRegistro(int id);
+    public void actualizarRegistro(Rol rol, int id);
 }

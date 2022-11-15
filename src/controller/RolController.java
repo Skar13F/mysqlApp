@@ -1,6 +1,7 @@
 
 package controller;
 
+import controller.base.RegistroControllerBase;
 import entity.Rol;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -8,14 +9,20 @@ import javax.swing.table.DefaultTableModel;
 import service.IRolService;
 import service.RolServiceImpl;
 
-public class RolController {
-    //realiza una instancia a la capa service
-    IRolService service=new RolServiceImpl();
+public class RolController extends RegistroControllerBase<Rol>{
+    private IRolService service=new RolServiceImpl();
+    
     public void crearRegistro(Rol rol){
-        service.insertarRegistro(rol);
+        
+        //service=new RolServiceImpl(); //lo pasé arriba porque lo ocuparemos en todos los métodos
+        super.setService(service);
+        super.setRegistro(rol);
+        super.crearRegistro();
+        //service.insertarRegistro(rol);
     }
     
     public void mostrarRegistros(DefaultTableModel modelo){
+        
         List<Rol> listaRol=service.obtenerRegistro();
         modelo.setRowCount(0);
         for (Rol rol : listaRol) {
@@ -26,23 +33,26 @@ public class RolController {
             modelo.addRow(fila);
         }
     }
-    public Rol buscarRegistro(int id){
-//        List<Rol> listaRol=service.obtenerRegistro();
-//        int bandera=0;
-//        for (Rol rol : listaRol) {
-//            if(rol.getIdRol()==id){
-//                JOptionPane.showMessageDialog(null, rol.getRol());
-//                bandera=1;
-//                break;
-//            }
-//        }
-//        if(bandera==0){
-//            JOptionPane.showMessageDialog(null, "Registro no encontrado");
-//        }
-        
+    
+    
+    //realiza una instancia a la capa service
+    /*IRolService service=new RolServiceImpl();
+    public void crearRegistro(Rol rol){
+        service.insertarRegistro(rol);
+    }
+    
+    
+    
+    public Rol buscarRegistro(int id){      
         return  service.buscarRegistro(id);
     }
+    
     public void eliminarRegistro(Rol rol){
         service.eliminarRegistro(rol);
     }
+    
+    public void actualizarRegistro(Rol rol, int id){
+        service.actualizarRegistro(rol, id);
+    }*/
+    
 }

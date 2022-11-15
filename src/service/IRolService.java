@@ -1,12 +1,8 @@
-
 package service;
 
 import entity.Rol;
-import java.util.List;
+import service.base.IRegistroServiceBase;
 
-public interface IRolService {
-    public void insertarRegistro(Rol rol);
-    public List<Rol> obtenerRegistro();
-    public void eliminarRegistro(Rol rol);
-    public Rol buscarRegistro(int id);
+public interface IRolService extends IRegistroServiceBase<Rol>{
+    
 }

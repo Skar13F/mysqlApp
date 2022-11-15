@@ -1,20 +1,26 @@
-
 package view;
 
+import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+import com.jtattoo.plaf.aero.AeroLookAndFeel;
+import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
 import controller.RolController;
 import entity.Rol;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 
 public class RolView extends javax.swing.JFrame {
 
     private DefaultTableModel modelo;
     private int idRol;
-    
+
     public RolView() {
         initComponents();
-        modelo=(DefaultTableModel) jTable1.getModel();
-        RolController controller=new RolController();
+        modelo = (DefaultTableModel) jTable1.getModel();
+        RolController controller = new RolController();
         controller.mostrarRegistros(modelo);
     }
 
@@ -29,14 +35,15 @@ public class RolView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        botonGuardar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        botonMostrar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        botonEliminar = new javax.swing.JButton();
+        botonActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,10 +52,10 @@ public class RolView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("FreeMono", 1, 18)); // NOI18N
         jLabel1.setText("Gestión de errores");
 
-        jButton1.setText("Guardar");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonGuardar.setText("Guardar");
+        botonGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                botonGuardarMouseClicked(evt);
             }
         });
 
@@ -77,15 +84,15 @@ public class RolView extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton2.setText("mostrar");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonMostrar.setText("mostrar");
+        botonMostrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                botonMostrarMouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonMostrarActionPerformed(evt);
             }
         });
 
@@ -96,10 +103,17 @@ public class RolView extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("eliminar");
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonEliminar.setText("eliminar");
+        botonEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
+                botonEliminarMouseClicked(evt);
+            }
+        });
+
+        botonActualizar.setText("actualizar");
+        botonActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonActualizarMouseClicked(evt);
             }
         });
 
@@ -119,14 +133,14 @@ public class RolView extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addGap(39, 39, 39))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jButton4))
-                                .addGap(18, 18, 18)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(botonGuardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(botonMostrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(botonEliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(botonActualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextField1))
+                                .addGap(49, 49, 49)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(154, 154, 154))))
         );
@@ -141,14 +155,16 @@ public class RolView extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonActualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(botonMostrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(botonGuardar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(16, 16, 16))
         );
@@ -168,51 +184,78 @@ public class RolView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        
+    private void botonGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarMouseClicked
+
         //JOptionPane.showMessageDialog(null,"Hola");
         RolController controller = new RolController();
         Rol rol = new Rol();
         rol.setRol(this.jTextField1.getText());
         controller.crearRegistro(rol);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_botonGuardarMouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        RolController controller=new RolController();
+    private void botonMostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonMostrarMouseClicked
+        RolController controller = new RolController();
         controller.mostrarRegistros(modelo);
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_botonMostrarMouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        RolController controller=new RolController();
-        controller.buscarRegistro(Integer.parseInt(jTextField1.getText()));
+        RolController controller = new RolController();
+//        Rol rol = controller.buscarRegistro(Integer.parseInt(jTextField1.getText()));
+//
+//        if (rol != null) {
+//            Icon icono = new ImageIcon(getClass().getResource("usuario2.png"));
+//            JOptionPane.showMessageDialog(null, rol.getIdRol() + " " + rol.getRol(), null, JOptionPane.DEFAULT_OPTION, icono);
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Registro no encontrado");
+//        }
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        idRol = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-        RolController controller=new RolController();
-        
-        Rol rol=controller.buscarRegistro(idRol);
-        if(evt.getClickCount()==2){
-            JOptionPane.showMessageDialog(null, rol.getIdRol()+" "+rol.getRol());
-            //JOptionPane.showMessageDialog(null, "Mensaje dentro de la ventana", "Titulo", JOptionPane.DEFAULT_OPTION, icon);
 
-        }
-        
+        idRol = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        jTextField1.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+        RolController controller = new RolController();
+
+//        if (evt.getClickCount() == 2) {
+//            Rol rol = controller.buscarRegistro(idRol);
+//            Icon icono = new ImageIcon("/home/labingsw02/NetBeansProjects/mysqlApp/src/service/usuario2.png");
+//            //Icon icono = new ImageIcon(getClass().getResource("usuario2.png"));//si se encuentra en la carpeta
+//            JOptionPane.showMessageDialog(null, rol.getIdRol() + " " + rol.getRol(), null, JOptionPane.DEFAULT_OPTION, icono);
+//        }
+
         //controller.buscarRegistro(Integer.parseInt((String) jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botonMostrarActionPerformed
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        RolController controller=new RolController();
+    private void botonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMouseClicked
+        RolController controller = new RolController();
         Rol rol = new Rol();
         rol.setIdRol(idRol);
-        controller.eliminarRegistro(rol);
-        controller.mostrarRegistros(modelo);
-        
-    }//GEN-LAST:event_jButton4MouseClicked
+//        controller.eliminarRegistro(rol);
+//        controller.mostrarRegistros(modelo);
+
+    }//GEN-LAST:event_botonEliminarMouseClicked
+
+    private void botonActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseClicked
+        RolController controller = new RolController();
+        Rol rol = new Rol();
+        rol.setIdRol(idRol);
+
+//        Rol rolNuevo = new Rol();
+//        rolNuevo.setRol(jTextField1.getText());
+//        if (jTextField1.getText().equals("")) {
+//
+//        } else {
+//            controller.actualizarRegistro(rol, rolNuevo);
+//            controller.mostrarRegistros(modelo);
+//            jTextField1.setText("");
+//        }
+
+
+    }//GEN-LAST:event_botonActualizarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -223,21 +266,9 @@ public class RolView extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RolView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RolView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RolView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RolView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        try{
+            UIManager.setLookAndFeel(new AcrylLookAndFeel());
+        }catch(UnsupportedLookAndFeelException  e) {
         }
         //</editor-fold>
         //</editor-fold>
@@ -251,10 +282,11 @@ public class RolView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton botonActualizar;
+    private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton botonGuardar;
+    private javax.swing.JButton botonMostrar;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -33,7 +33,7 @@ public class Conexion {
                     + this.ip + ":" + this.puerto + "/" + this.db, this.user, this.pwd);
             //System.out.println(this.url
             //        + this.ip + ":" + this.puerto + "/" + this.db+ this.user+ this.pwd);
-            System.out.println("Conexión exitosa");
+            //System.out.println("Conexión exitosa");
             return connection;
         } catch (SQLException e) {
             System.out.println("Error de conexión: " + e.getMessage());

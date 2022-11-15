@@ -4,22 +4,22 @@ import bd.Conexion;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import entity.Rol;
+import entity.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RolModelImpl implements IRolModel {
+public class UsuarioModelImpl implements IUsuarioModel {
 
     private Conexion conexion;
     private Connection connection;
     private Statement stm;
 
     public static void main(String[] args) {
-        IRolModel model = new RolModelImpl();
-        Rol rol = new Rol();
+        IUsuarioModel model = new UsuarioModelImpl();
+        Usuario usuario = new Usuario();
 
-        rol.setRol("admin");
-        //model.insertarRegistro(rol);
+        usuario.setNombre("admin");
+        //model.insertarRegistro(usuario);
         model.obtenerRegistro();
         System.out.println("Tamaño: " + model.obtenerRegistro().size());
         model.imprimir(model.obtenerRegistro());
@@ -30,13 +30,13 @@ public class RolModelImpl implements IRolModel {
 //    }
 
     @Override
-    public void insertarRegistro(Rol rol) {
+    public void insertarRegistro(Usuario usuario) {
         try {
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
-            //String query="INSERT INTO Rol(rol) values('administrador')";
-            //String query = "INSERT INTO Rol(rol) values('" + rol.getRol() + "')";
-            String query = "CALL insertarRegistro('" + rol.getRol() + "')";
+            //String query="INSERT INTO Usuario(usuario) values('administrador')";
+            //String query = "INSERT INTO Usuario(usuario) values('" + usuario.getNombre() + "')";
+            String query = "CALL insertarRegistro('" + usuario.getNombre() + "')";
             stm = connection.createStatement();
             stm.execute(query);
             stm.close();
@@ -48,27 +48,27 @@ public class RolModelImpl implements IRolModel {
     }
 
     @Override
-    public List<Rol> obtenerRegistro() {
+    public List<Usuario> obtenerRegistro() {
         try {
-            List<Rol> listaRol = new ArrayList<>();
+            List<Usuario> listaUsuario = new ArrayList<>();
             ResultSet rs;
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
-            //String query="INSERT INTO Rol(rol) values('administrador')";
-            //String query = "SELECT * FROM Rol";
+            //String query="INSERT INTO Usuario(usuario) values('administrador')";
+            //String query = "SELECT * FROM Usuario";
             String query = "CALL obtenerRegistro";
             stm = connection.createStatement();
             rs = stm.executeQuery(query);
             while (rs.next()) {
-                Rol rol = new Rol();
-                rol.setIdRol(rs.getInt(1));// o se pude hacer rol.setIdRol(rs.getInt("idRol"));
-                rol.setRol(rs.getString(2));// o se pude hacer rol.setRol(rs.getString("rol"));
-                listaRol.add(rol);
+                Usuario usuario = new Usuario();
+                usuario.setId_usuario(rs.getInt(1));// o se pude hacer usuario.setId_usuario(rs.getInt("idUsuario"));
+                usuario.setNombre(rs.getString(2));// o se pude hacer usuario.setNombre(rs.getString("usuario"));
+                listaUsuario.add(usuario);
             }
 
             stm.close();
             connection.close();
-            return listaRol;
+            return listaUsuario;
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
@@ -77,20 +77,20 @@ public class RolModelImpl implements IRolModel {
     }
 
     @Override
-    public void imprimir(List<Rol> lista) {
-        for (Rol rol : lista) {
-            System.out.println("Rol: " + rol.getRol());
+    public void imprimir(List<Usuario> lista) {
+        for (Usuario usuario : lista) {
+            System.out.println("Usuario: " + usuario.getNombre());
         }
     }
 
     @Override
-    public void eliminarRegistro(Rol rol) {
+    public void eliminarRegistro(Usuario usuario) {
 
         try {
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
-            //String query = "DELETE FROM Rol WHERE idRol='" + rol.getIdRol() + "'";
-            String query = "CALL eliminarRegistro('" + rol.getIdRol() + "')";
+            //String query = "DELETE FROM Usuario WHERE idUsuario='" + usuario.getId_usuario() + "'";
+            String query = "CALL eliminarRegistro('" + usuario.getId_usuario() + "')";
             stm = connection.createStatement();
             stm.execute(query);
 
@@ -101,24 +101,24 @@ public class RolModelImpl implements IRolModel {
     }
 
     @Override
-    public Rol buscarRegistro(int id) {
+    public Usuario buscarRegistro(int id) {
         try {
-            Rol rol = new Rol();
+            Usuario usuario = new Usuario();
             ResultSet rs;
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
-            //String query="INSERT INTO Rol(rol) values('administrador')";
-            //String query = "SELECT idRol, rol FROM Rol where idRol=" + id;
+            //String query="INSERT INTO Usuario(usuario) values('administrador')";
+            //String query = "SELECT idUsuario, usuario FROM Usuario where idUsuario=" + id;
             String query = "CALL buscarRegistro('" + id + "')";
             stm = connection.createStatement();
             rs = stm.executeQuery(query);
             rs.next();
-            rol.setIdRol(rs.getInt(1));// o se pude hacer rol.setIdRol(rs.getInt("idRol"));
-            rol.setRol(rs.getString(2));// o se pude hacer rol.setRol(rs.getString("rol"));
+            usuario.setId_usuario(rs.getInt(1));// o se pude hacer usuario.setId_usuario(rs.getInt("idUsuario"));
+            usuario.setNombre(rs.getString(2));// o se pude hacer usuario.setNombre(rs.getString("usuario"));
 
             stm.close();
             connection.close();
-            return rol;
+            return usuario;
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
@@ -129,12 +129,12 @@ public class RolModelImpl implements IRolModel {
     }
 
     @Override
-    public void actualizarRegistro(Rol rolNuevo, int id) {
+    public void actualizarRegistro(Usuario usuario, int idUsuario) {
         try {
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
-            //String query = "UPDATE Rol SET rol='" + rolNuevo.getRol() + "' WHERE Rol.idRol='" + rol.getIdRol() + "';";
-            String query = "CALL actualizarRegistro('" + rolNuevo.getRol()+"','"+ id+ "')";
+            //String query = "UPDATE Usuario SET usuario='" + usuarioNuevo.getNombre() + "' WHERE Usuario.idUsuario='" + usuario.getId_usuario() + "';";
+            String query = "CALL actualizarRegistro('" + usuario.getNombre()+"','"+ idUsuario+ "')";
             stm = connection.createStatement();
             stm.execute(query);
 
