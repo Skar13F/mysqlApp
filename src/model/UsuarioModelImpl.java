@@ -36,7 +36,7 @@ public class UsuarioModelImpl implements IUsuarioModel {
             connection = conexion.getConnection();// se obtiene la conexión a la bd
             //String query="INSERT INTO Usuario(usuario) values('administrador')";
             //String query = "INSERT INTO Usuario(usuario) values('" + usuario.getNombre() + "')";
-            String query = "CALL insertarRegistro('" + usuario.getNombre() + "')";
+            String query = "CALL insertarUsuario('" + usuario.getNombre() +"','"+usuario.getPassword()+ "')";
             stm = connection.createStatement();
             stm.execute(query);
             stm.close();
@@ -56,13 +56,14 @@ public class UsuarioModelImpl implements IUsuarioModel {
             connection = conexion.getConnection();// se obtiene la conexión a la bd
             //String query="INSERT INTO Usuario(usuario) values('administrador')";
             //String query = "SELECT * FROM Usuario";
-            String query = "CALL obtenerRegistro";
+            String query = "CALL obtenerUsuario";
             stm = connection.createStatement();
             rs = stm.executeQuery(query);
             while (rs.next()) {
                 Usuario usuario = new Usuario();
                 usuario.setId_usuario(rs.getInt(1));// o se pude hacer usuario.setId_usuario(rs.getInt("idUsuario"));
                 usuario.setNombre(rs.getString(2));// o se pude hacer usuario.setNombre(rs.getString("usuario"));
+                usuario.setPassword(rs.getString(3));
                 listaUsuario.add(usuario);
             }
 
@@ -90,7 +91,7 @@ public class UsuarioModelImpl implements IUsuarioModel {
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
             //String query = "DELETE FROM Usuario WHERE idUsuario='" + usuario.getId_usuario() + "'";
-            String query = "CALL eliminarRegistro('" + usuario.getId_usuario() + "')";
+            String query = "CALL eliminarUsuario('" + usuario.getId_usuario() + "')";
             stm = connection.createStatement();
             stm.execute(query);
 
@@ -109,7 +110,7 @@ public class UsuarioModelImpl implements IUsuarioModel {
             connection = conexion.getConnection();// se obtiene la conexión a la bd
             //String query="INSERT INTO Usuario(usuario) values('administrador')";
             //String query = "SELECT idUsuario, usuario FROM Usuario where idUsuario=" + id;
-            String query = "CALL buscarRegistro('" + id + "')";
+            String query = "CALL buscarUsuario('" + id + "')";
             stm = connection.createStatement();
             rs = stm.executeQuery(query);
             rs.next();
@@ -134,7 +135,7 @@ public class UsuarioModelImpl implements IUsuarioModel {
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
             //String query = "UPDATE Usuario SET usuario='" + usuarioNuevo.getNombre() + "' WHERE Usuario.idUsuario='" + usuario.getId_usuario() + "';";
-            String query = "CALL actualizarRegistro('" + usuario.getNombre()+"','"+ idUsuario+ "')";
+            String query = "CALL actualizarUsuario('" + usuario.getNombre()+"','"+ idUsuario+ "')";
             stm = connection.createStatement();
             stm.execute(query);
 
