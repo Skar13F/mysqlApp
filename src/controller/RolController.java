@@ -10,18 +10,21 @@ import service.IRolService;
 import service.RolServiceImpl;
 
 public class RolController extends RegistroControllerBase<Rol>{
-    private IRolService service=new RolServiceImpl();
+    private IRolService service;
     
-    public void crearRegistro(Rol rol){
-        
-        //service=new RolServiceImpl(); //lo pasé arriba porque lo ocuparemos en todos los métodos
+    public void init(){
+        service=new RolServiceImpl();
         super.setService(service);
-        super.setRegistro(rol);
-        super.crearRegistro();
-        //service.insertarRegistro(rol);
     }
     
-    public void mostrarRegistros(DefaultTableModel modelo){
+    public void crearActualizarRol(Rol rol){
+        //init(); ya se inicializó en la vista
+        super.setRegistro(rol);
+        super.crearActualizarRegistro();
+    }
+    
+    
+    /*public void mostrarRegistros(DefaultTableModel modelo){
         
         List<Rol> listaRol=service.obtenerRegistro();
         modelo.setRowCount(0);
@@ -32,7 +35,7 @@ public class RolController extends RegistroControllerBase<Rol>{
             //rol.getRol();
             modelo.addRow(fila);
         }
-    }
+    }*/
     
     
     //realiza una instancia a la capa service

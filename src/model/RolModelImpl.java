@@ -84,13 +84,13 @@ public class RolModelImpl implements IRolModel {
     }
 
     @Override
-    public void eliminarRegistro(Rol rol) {
+    public void eliminarRegistro(int id) {
 
         try {
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
             //String query = "DELETE FROM Rol WHERE idRol='" + rol.getIdRol() + "'";
-            String query = "CALL eliminarRegistro('" + rol.getIdRol() + "')";
+            String query = "CALL eliminarRegistro('" + id + "')";
             stm = connection.createStatement();
             stm.execute(query);
 
@@ -129,12 +129,12 @@ public class RolModelImpl implements IRolModel {
     }
 
     @Override
-    public void actualizarRegistro(Rol rolNuevo, int id) {
+    public void actualizarRegistro(Rol rolNuevo) {
         try {
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
             //String query = "UPDATE Rol SET rol='" + rolNuevo.getRol() + "' WHERE Rol.idRol='" + rol.getIdRol() + "';";
-            String query = "CALL actualizarRegistro('" + rolNuevo.getRol()+"','"+ id+ "')";
+            String query = "CALL actualizarRegistro('" + rolNuevo.getRol()+"','"+ rolNuevo.getIdRol()+ "')";
             stm = connection.createStatement();
             stm.execute(query);
 

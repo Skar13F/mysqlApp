@@ -7,7 +7,7 @@ import java.util.List;
 public interface IRegistroServiceBase <T>{
     public void insertarRegistro(T registro);
     public List<T> obtenerRegistro();
-    public void eliminarRegistro(T registro);
+    public void eliminarRegistro(int id);
     public T buscarRegistro(int id);
-    public void actualizarRegistro(T registro, int id);
+    public void actualizarRegistro(T registro);
 }

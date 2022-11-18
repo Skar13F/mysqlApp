@@ -45,8 +45,8 @@ public class RolServiceImpl implements IRolService{
     }
 
     @Override
-    public void eliminarRegistro(Rol registro) {
-        model.eliminarRegistro(registro);
+    public void eliminarRegistro(int id) {
+        model.eliminarRegistro(id);
     }
 
     @Override
@@ -55,8 +55,8 @@ public class RolServiceImpl implements IRolService{
     }
 
     @Override
-    public void actualizarRegistro(Rol registro, int id) {
-        model.actualizarRegistro(registro, id);
+    public void actualizarRegistro(Rol registro) {
+        model.actualizarRegistro(registro);
     }
     
     

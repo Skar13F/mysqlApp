@@ -21,8 +21,8 @@ public class UsuarioServiceImpl implements IUsuarioService{
     }
 
     @Override
-    public void eliminarRegistro(Usuario registro) {
-        model.eliminarRegistro(registro);
+    public void eliminarRegistro(int id ) {
+        model.eliminarRegistro(id);
     }
 
     @Override
@@ -31,8 +31,8 @@ public class UsuarioServiceImpl implements IUsuarioService{
     }
 
     @Override
-    public void actualizarRegistro(Usuario registro, int id) {
-        model.actualizarRegistro(registro, id);
+    public void actualizarRegistro(Usuario registro) {
+        model.actualizarRegistro(registro);
     }
     
     

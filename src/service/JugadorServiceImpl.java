@@ -21,8 +21,8 @@ public class JugadorServiceImpl implements IJugadorService{
     }
 
     @Override
-    public void eliminarRegistro(Jugador registro) {
-        model.eliminarRegistro(registro);
+    public void eliminarRegistro(int id) {
+        model.eliminarRegistro(id);
     }
 
     @Override
@@ -31,8 +31,8 @@ public class JugadorServiceImpl implements IJugadorService{
     }
 
     @Override
-    public void actualizarRegistro(Jugador registro, int id) {
-        model.actualizarRegistro(registro, id);
+    public void actualizarRegistro(Jugador registro) {
+        model.actualizarRegistro(registro);
     }
     
     

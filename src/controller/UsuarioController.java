@@ -17,7 +17,7 @@ public class UsuarioController extends RegistroControllerBase<Usuario>{
         //service=new UsuarioServiceImpl(); //lo pasé arriba porque lo ocuparemos en todos los métodos
         super.setService(service);
         super.setRegistro(usuario);
-        super.crearRegistro();
+        super.crearActualizarRegistro();
         //service.insertarRegistro(usuario);
     }
     

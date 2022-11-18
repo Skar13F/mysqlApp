@@ -16,12 +16,15 @@ public class RolView extends javax.swing.JFrame {
 
     private DefaultTableModel modelo;
     private int idRol;
+    //se declara la variable de tipo rolController
+    private RolController rolController;
 
     public RolView() {
         initComponents();
         modelo = (DefaultTableModel) jTable1.getModel();
-        RolController controller = new RolController();
-        controller.mostrarRegistros(modelo);
+        rolController = new RolController();
+        //rolController.mostrarRegistros(modelo);
+        rolController.init();
     }
 
     /**
@@ -187,19 +190,19 @@ public class RolView extends javax.swing.JFrame {
     private void botonGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarMouseClicked
 
         //JOptionPane.showMessageDialog(null,"Hola");
-        RolController controller = new RolController();
+        //RolController controller = new RolController();
         Rol rol = new Rol();
         rol.setRol(this.jTextField1.getText());
-        controller.crearRegistro(rol);
+        rolController.crearActualizarRol(rol);
     }//GEN-LAST:event_botonGuardarMouseClicked
 
     private void botonMostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonMostrarMouseClicked
-        RolController controller = new RolController();
-        controller.mostrarRegistros(modelo);
+        //RolController controller = new RolController();
+        //rolController.mostrarRegistros(modelo);
     }//GEN-LAST:event_botonMostrarMouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        RolController controller = new RolController();
+        //RolController controller = new RolController();
 //        Rol rol = controller.buscarRegistro(Integer.parseInt(jTextField1.getText()));
 //
 //        if (rol != null) {
@@ -231,18 +234,22 @@ public class RolView extends javax.swing.JFrame {
     }//GEN-LAST:event_botonMostrarActionPerformed
 
     private void botonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMouseClicked
-        RolController controller = new RolController();
-        Rol rol = new Rol();
-        rol.setIdRol(idRol);
+        //RolController controller = new RolController();
+        //Rol rol = new Rol();
+        //rol.setIdRol(idRol);
+        rolController.eliminarRegistro(idRol);
+        
 //        controller.eliminarRegistro(rol);
 //        controller.mostrarRegistros(modelo);
 
     }//GEN-LAST:event_botonEliminarMouseClicked
 
     private void botonActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseClicked
-        RolController controller = new RolController();
+        //RolController controller = new RolController();
         Rol rol = new Rol();
         rol.setIdRol(idRol);
+        rol.setRol(jTextField1.getText());
+        rolController.crearActualizarRol(rol);
 
 //        Rol rolNuevo = new Rol();
 //        rolNuevo.setRol(jTextField1.getText());

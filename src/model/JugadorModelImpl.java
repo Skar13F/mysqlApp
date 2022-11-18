@@ -92,12 +92,12 @@ public class JugadorModelImpl implements IJugadorModel {
     }
 
     @Override
-    public void eliminarRegistro(Jugador jugador) {
+    public void eliminarRegistro(int id) {
 
         try {
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
-            String query = "DELETE FROM jugador WHERE id_jugador='" + jugador.getId_jugador() + "'";
+            String query = "DELETE FROM jugador WHERE id_jugador='" + id + "'";
             //String query = "CALL eliminarRegistro('" + jugador.getIdJugador() + "')";
             stm = connection.createStatement();
             stm.execute(query);
@@ -137,11 +137,11 @@ public class JugadorModelImpl implements IJugadorModel {
     }
 
     @Override
-    public void actualizarRegistro(Jugador jugadorNuevo, int id) {
+    public void actualizarRegistro(Jugador jugadorNuevo) {
         try {
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
-            String query = "UPDATE Jugador SET nombre='" + jugadorNuevo.getNombre()+ "' WHERE ugador.id_jugador='" + id + "';";
+            String query = "UPDATE Jugador SET nombre='" + jugadorNuevo.getNombre()+ "' WHERE ugador.id_jugador='" + jugadorNuevo.getId_jugador() + "';";
             //String query = "CALL actualizarRegistro('" + jugadorNuevo.getJugador()+"','"+ id+ "')";
             stm = connection.createStatement();
             stm.execute(query);

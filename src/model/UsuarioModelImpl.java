@@ -85,13 +85,13 @@ public class UsuarioModelImpl implements IUsuarioModel {
     }
 
     @Override
-    public void eliminarRegistro(Usuario usuario) {
+    public void eliminarRegistro(int id) {
 
         try {
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
             //String query = "DELETE FROM Usuario WHERE idUsuario='" + usuario.getId_usuario() + "'";
-            String query = "CALL eliminarUsuario('" + usuario.getId_usuario() + "')";
+            String query = "CALL eliminarUsuario('" + id + "')";
             stm = connection.createStatement();
             stm.execute(query);
 
@@ -130,12 +130,12 @@ public class UsuarioModelImpl implements IUsuarioModel {
     }
 
     @Override
-    public void actualizarRegistro(Usuario usuario, int idUsuario) {
+    public void actualizarRegistro(Usuario usuario) {
         try {
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
             //String query = "UPDATE Usuario SET usuario='" + usuarioNuevo.getNombre() + "' WHERE Usuario.idUsuario='" + usuario.getId_usuario() + "';";
-            String query = "CALL actualizarUsuario('" + usuario.getNombre()+"','"+ idUsuario+ "')";
+            String query = "CALL actualizarUsuario('" + usuario.getNombre()+"','"+ usuario.getId_usuario()+ "')";
             stm = connection.createStatement();
             stm.execute(query);
 

@@ -17,7 +17,7 @@ public class JugadorController extends RegistroControllerBase<Jugador>{
         //service=new JugadorServiceImpl(); //lo pasé arriba porque lo ocuparemos en todos los métodos
         super.setService(service);
         super.setRegistro(jugador);
-        super.crearRegistro();
+        super.crearActualizarRegistro();
         //service.insertarRegistro(jugador);
     }
     
