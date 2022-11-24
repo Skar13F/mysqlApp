@@ -58,6 +58,11 @@ public class UsuarioView extends javax.swing.JFrame {
                 botonGuardarMouseClicked(evt);
             }
         });
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nombre del usuario: ");
 
@@ -221,6 +226,10 @@ public class UsuarioView extends javax.swing.JFrame {
 //        }
 
     }//GEN-LAST:event_botonActualizarMouseClicked
+
+    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGuardarActionPerformed
 
     /**
      * @param args the command line arguments
