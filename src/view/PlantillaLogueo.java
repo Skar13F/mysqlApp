@@ -243,9 +243,16 @@ public class PlantillaLogueo extends JFrame implements ActionListener {
 
             @Override
             public void mouseClicked(MouseEvent e) {
+                cerrarFrame();
+                Registro1 registro = new Registro1();
+                
+                //panelIzquierdo.add(registro.getComponentAt(0, ));
+                //registro.setLocation(panelDerecho.getX(), panelIzquierdo.getY());
+                //registro.getClass();
                 bRegistrar.setBorder(bInferiorAzul);
                 bIngresar.setVisible(false);
-                bRegistrar.setLocation((panelDerecho.getWidth()-bRegistrar.getWidth())/2,cbTipoUsuario.getY() + cbTipoUsuario.getHeight() + 10);
+                bRegistrar.setLocation((panelDerecho.getWidth() - bRegistrar.getWidth()) / 2, cbTipoUsuario.getY() + cbTipoUsuario.getHeight() + 10);
+                
             }
 
         }
@@ -282,10 +289,18 @@ public class PlantillaLogueo extends JFrame implements ActionListener {
         if (e.getSource() == this.getBCerrar()) {
             System.exit(0);
         }
+
     }
 
     public JButton getBCerrar() {
         return this.bCerrar;
+    }
+
+    public JButton getBRegistrar() {
+        return this.bRegistrar;
+    }
+    public void cerrarFrame(){
+        this.setVisible(false);
     }
 
     //cargar fuente
