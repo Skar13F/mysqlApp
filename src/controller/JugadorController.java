@@ -23,7 +23,7 @@ public class JugadorController extends RegistroControllerBase<Jugador>{
     
     public void mostrarRegistros(DefaultTableModel modelo){
         
-        List<Jugador> listaJugador=service.obtenerRegistro();
+        List<Jugador> listaJugador=super.obtenerRegistro();
         modelo.setRowCount(0);
         for (Jugador jugador : listaJugador) {
             Object[] fila=new Object[2];
@@ -34,6 +34,9 @@ public class JugadorController extends RegistroControllerBase<Jugador>{
         }
     }
     
+    public Jugador buscarRegistroTelefono(String telefono){      
+        return  service.buscarRegistro(telefono);
+    }
     
     //realiza una instancia a la capa service
     /*IJugadorService service=new JugadorServiceImpl();
@@ -43,9 +46,7 @@ public class JugadorController extends RegistroControllerBase<Jugador>{
     
     
     
-    public Jugador buscarRegistro(int id){      
-        return  service.buscarRegistro(id);
-    }
+    
     
     public void eliminarRegistro(Jugador jugador){
         service.eliminarRegistro(jugador);

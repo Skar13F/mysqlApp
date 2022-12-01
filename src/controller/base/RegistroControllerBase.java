@@ -2,6 +2,7 @@
 package controller.base;
 
 import entity.base.IRegistroEntityBase;
+import java.util.List;
 import service.base.IRegistroServiceBase;
 
 public abstract class RegistroControllerBase <T extends IRegistroEntityBase>{
@@ -15,8 +16,16 @@ public abstract class RegistroControllerBase <T extends IRegistroEntityBase>{
         }
     }
     
+    public List<T> obtenerRegistro(){
+        return service.obtenerRegistro();
+    }
+    
     public void eliminarRegistro(int id){
         service.eliminarRegistro(id);
+    }
+    
+    public T buscarRegistro(String telefono){
+        return service.buscarRegistro(telefono);
     }
     //aquí se escribirán los demás métodos
 

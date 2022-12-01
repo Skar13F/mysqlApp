@@ -34,6 +34,15 @@ public class UsuarioServiceImpl implements IUsuarioService{
     public void actualizarRegistro(Usuario registro) {
         model.actualizarRegistro(registro);
     }
-    
+
+    @Override
+    public Usuario buscarRegistro(Usuario registro) {
+        return model.buscarRegistro(registro);
+    }
+
+    @Override
+    public Usuario buscarRegistro(String nombre) {
+        return model.buscarRegistro(nombre);
+    }
     
 }

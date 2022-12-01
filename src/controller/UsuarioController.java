@@ -18,7 +18,6 @@ public class UsuarioController extends RegistroControllerBase<Usuario>{
         super.setService(service);
         super.setRegistro(usuario);
         super.crearActualizarRegistro();
-        //service.insertarRegistro(usuario);
     }
     
     public void mostrarRegistros(DefaultTableModel modelo){
@@ -30,30 +29,23 @@ public class UsuarioController extends RegistroControllerBase<Usuario>{
             fila[0]=String.valueOf(usuario.getId_usuario());
             fila[1]=usuario.getNombre();
             fila[2]=usuario.getPassword();
-            //usuario.getUsuario();
             modelo.addRow(fila);
         }
     }
+    public Usuario buscarRegistoNC(Usuario usuario){
+        return service.buscarRegistro(usuario);
+    }
+    public Usuario buscarRegistoNombre(String nombre){
+        return service.buscarRegistro(nombre);
+    }
     
-    
+    public Usuario buscarRegisto(int id){
+        return service.buscarRegistro(id);
+    }
     //realiza una instancia a la capa service
-    /*IUsuarioService service=new UsuarioServiceImpl();
-    public void crearRegistro(Usuario usuario){
-        service.insertarRegistro(usuario);
+    
+    public void eliminarRegistro(int id){
+        service.eliminarRegistro(id);
     }
-    
-    
-    
-    public Usuario buscarRegistro(int id){      
-        return  service.buscarRegistro(id);
-    }
-    
-    public void eliminarRegistro(Usuario usuario){
-        service.eliminarRegistro(usuario);
-    }
-    
-    public void actualizarRegistro(Usuario usuario, int id){
-        service.actualizarRegistro(usuario, id);
-    }*/
     
 }

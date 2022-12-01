@@ -19,7 +19,7 @@ public class Conexion {
     public Conexion() {
         this.driver = "com.mysql.cj.jdbc.Driver";
         this.user = "root";
-        this.pwd = "root123";
+        this.pwd = "Root.123";
         this.url = "jdbc:mysql://";
         this.ip = "localhost";//172.0.0.1
         this.puerto = "3306";

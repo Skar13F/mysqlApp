@@ -58,6 +58,16 @@ public class RolServiceImpl implements IRolService{
     public void actualizarRegistro(Rol registro) {
         model.actualizarRegistro(registro);
     }
+
+    @Override
+    public Rol buscarRegistro(Rol registro) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Rol buscarRegistro(String nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

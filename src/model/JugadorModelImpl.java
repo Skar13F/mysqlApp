@@ -23,7 +23,7 @@ public class JugadorModelImpl implements IJugadorModel {
         model.insertarRegistro(jugador);
         model.obtenerRegistro();
         System.out.println("Tamaño: " + model.obtenerRegistro().size());
-        model.imprimir(model.obtenerRegistro());
+    
     }
 //    public static void main(String[] args) throws ClassNotFoundException {
 //        Conexion conexion=new Conexion();
@@ -36,15 +36,14 @@ public class JugadorModelImpl implements IJugadorModel {
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
             //String query="INSERT INTO Jugador(jugador) values('administrador')";
-            String query = "INSERT INTO jugador(nombre, edad, sexo, telefono, correo, direccion, puntos) values('" + jugador.getNombre()+"','"+
-                    jugador.getEdad()+"','"+jugador.getSexo()+"','"+jugador.getTelefono()+"','"+jugador.getCorreo()+"','"+
-                    jugador.getDireccion()+"','"+jugador.getPuntos()+"')";
+            String query = "INSERT INTO jugador(nombre, edad, sexo, telefono, correo) values('" + jugador.getNombre()+"','"+
+                    jugador.getEdad()+"','"+jugador.getSexo().charAt(0)+"','"+jugador.getTelefono()+"','"+jugador.getCorreo()+"')";
             //String query = "CALL insertarRegistro('" + jugador.getJugador() + "')";
             stm = connection.createStatement();
             stm.execute(query);
             stm.close();
             connection.close();
-
+            System.out.println("Registro creado exitosamente");
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -84,12 +83,6 @@ public class JugadorModelImpl implements IJugadorModel {
         }
     }
 
-    @Override
-    public void imprimir(List<Jugador> lista) {
-        for (Jugador jugador : lista) {
-            System.out.println("Jugador: " + jugador.getNombre());
-        }
-    }
 
     @Override
     public void eliminarRegistro(int id) {
@@ -109,21 +102,23 @@ public class JugadorModelImpl implements IJugadorModel {
     }
 
     @Override
-    public Jugador buscarRegistro(int id) {
+    public Jugador buscarRegistro(String telefono) {
         try {
             Jugador jugador = new Jugador();
             ResultSet rs;
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
             //String query="INSERT INTO Jugador(jugador) values('administrador')";
-            String query = "SELECT * FROM Jugador where id_jugador=" + id;
+            String query = "SELECT * FROM jugador where telefono='" + telefono+"'";
             //String query = "CALL buscarRegistro('" + id + "')";
             stm = connection.createStatement();
             rs = stm.executeQuery(query);
             rs.next();
             jugador.setId_jugador(rs.getInt(1));// o se pude hacer jugador.setIdJugador(rs.getInt("idJugador"));
             jugador.setNombre(rs.getString(2));// o se pude hacer jugador.setJugador(rs.getString("jugador"));
-
+            jugador.setEdad(rs.getInt(3));
+            //jugador.setSexo(rs.getString(4));
+            jugador.setTelefono(rs.getString(5));
             stm.close();
             connection.close();
             return jugador;
@@ -141,7 +136,7 @@ public class JugadorModelImpl implements IJugadorModel {
         try {
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
-            String query = "UPDATE Jugador SET nombre='" + jugadorNuevo.getNombre()+ "' WHERE ugador.id_jugador='" + jugadorNuevo.getId_jugador() + "';";
+            String query = "UPDATE jugador SET nombre='" + jugadorNuevo.getNombre()+ "' WHERE jugador.id_jugador='" + jugadorNuevo.getId_jugador() + "';";
             //String query = "CALL actualizarRegistro('" + jugadorNuevo.getJugador()+"','"+ id+ "')";
             stm = connection.createStatement();
             stm.execute(query);

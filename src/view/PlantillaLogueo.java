@@ -1,5 +1,7 @@
 package view;
 
+import controller.UsuarioController;
+import entity.Usuario;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -144,18 +146,6 @@ public class PlantillaLogueo extends JFrame implements ActionListener {
 
         });
 
-//        jContrasenia.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                if(jContrasenia.getPassword().equals("password")){
-//                } else {
-//                    jContrasenia.setText("");
-//                }
-//            }
-//                
-//            }
-//        );
-//        
         cbTipoUsuario = new JComboBox();
         cbTipoUsuario.addItem("Invitado");
         cbTipoUsuario.addItem("Admin");
@@ -212,6 +202,26 @@ public class PlantillaLogueo extends JFrame implements ActionListener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 bIngresar.setBorder(bInferiorAzul);
+                UsuarioController controller = new UsuarioController();
+                Usuario userAux = new Usuario();
+                userAux.setNombre(tNombreUsuario.getText());
+                userAux.setPassword(String.valueOf(jContrasenia.getPassword()));
+                userAux.setId_jugador(cbTipoUsuario.getSelectedIndex()+1);
+                
+                System.out.println(cbTipoUsuario.getSelectedItem());
+                System.out.println(userAux.getId_jugador());
+                Usuario user = controller.buscarRegistoNC(userAux);
+                
+                if (user != null) {
+                    //JOptionPane.showMessageDialog(null, "Bienvenido");
+                    cerrarFrame();
+                    
+                    InicioJuego inicioJuego= new InicioJuego();
+                    inicioJuego.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Registro no encontrado");
+                }
+
             }
 
         }
@@ -244,15 +254,14 @@ public class PlantillaLogueo extends JFrame implements ActionListener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 cerrarFrame();
-                Registro1 registro = new Registro1();
-                
+                Registro registro = new Registro();
+
                 //panelIzquierdo.add(registro.getComponentAt(0, ));
                 //registro.setLocation(panelDerecho.getX(), panelIzquierdo.getY());
                 //registro.getClass();
-                bRegistrar.setBorder(bInferiorAzul);
-                bIngresar.setVisible(false);
-                bRegistrar.setLocation((panelDerecho.getWidth() - bRegistrar.getWidth()) / 2, cbTipoUsuario.getY() + cbTipoUsuario.getHeight() + 10);
-                
+                //bRegistrar.setBorder(bInferiorAzul);
+                //bIngresar.setVisible(false);
+                //bRegistrar.setLocation((panelDerecho.getWidth() - bRegistrar.getWidth()) / 2, cbTipoUsuario.getY() + cbTipoUsuario.getHeight() + 10);
             }
 
         }
@@ -299,7 +308,8 @@ public class PlantillaLogueo extends JFrame implements ActionListener {
     public JButton getBRegistrar() {
         return this.bRegistrar;
     }
-    public void cerrarFrame(){
+
+    public void cerrarFrame() {
         this.setVisible(false);
     }
 

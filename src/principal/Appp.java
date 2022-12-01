@@ -2,7 +2,8 @@
 package principal;
 
 import javax.swing.SwingUtilities;
-import view.Registro1;
+import view.InicioJuego;
+import view.Registro;
 
 public class Appp {
         public static void main(String[] args) {
@@ -10,8 +11,8 @@ public class Appp {
 
             @Override
             public void run() {
-                Registro1 registro = new Registro1();
-                registro.getClass();
+                Registro r=new Registro();
+                r.getClass();
 
             }
         };
