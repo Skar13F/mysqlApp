@@ -26,7 +26,6 @@ public abstract class RegistroControllerBase<T extends IRegistroEntityBase> {
     }
 
     public T buscarRegistro(String telefono) {
-        System.out.println("Entró a registro controller base");
         return service.buscarRegistro(telefono);
     }
     //aquí se escribirán los demás métodos

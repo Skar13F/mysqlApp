@@ -208,7 +208,7 @@ public class UsuarioView extends javax.swing.JFrame {
         String telefono=cbTelefono.getSelectedItem().toString();
         String rolA=cbRol.getSelectedItem().toString();
         
-        System.out.println(telefono+rolA);
+        
         jugador=jugadorController.buscarRegistroTelefono("9515678146");
         Rol rol=rolController.buscarRegistro(rolA);
         
