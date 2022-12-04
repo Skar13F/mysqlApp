@@ -1,30 +1,31 @@
-
 package controller.base;
 
 import entity.base.IRegistroEntityBase;
 import java.util.List;
 import service.base.IRegistroServiceBase;
 
-public abstract class RegistroControllerBase <T extends IRegistroEntityBase>{
+public abstract class RegistroControllerBase<T extends IRegistroEntityBase> {
+
     private T registro;
-    private IRegistroServiceBase <T> service;
-    public void crearActualizarRegistro(){
-        if(registro.getId()<1){
+    private IRegistroServiceBase<T> service;
+
+    public void crearActualizarRegistro() {
+        if (registro.getId() < 1) {
             service.insertarRegistro(registro);
-        }else{
+        } else {
             service.actualizarRegistro(registro);
         }
     }
-    
-    public List<T> obtenerRegistro(){
+
+    public List<T> obtenerRegistro() {
         return service.obtenerRegistro();
     }
-    
-    public void eliminarRegistro(int id){
+
+    public void eliminarRegistro(int id) {
         service.eliminarRegistro(id);
     }
-    
-    public T buscarRegistro(String telefono){
+
+    public T buscarRegistro(String telefono) {
         return service.buscarRegistro(telefono);
     }
     //aquí se escribirán los demás métodos
@@ -40,5 +41,5 @@ public abstract class RegistroControllerBase <T extends IRegistroEntityBase>{
     public void setRegistro(T registro) {
         this.registro = registro;
     }
-    
+
 }

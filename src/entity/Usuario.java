@@ -1,13 +1,14 @@
-
 package entity;
 
 import entity.base.IRegistroEntityBase;
 
-public class Usuario implements IRegistroEntityBase{
+public class Usuario implements IRegistroEntityBase {
+
     private int id_usuario;
     private String nombre;
     private String password;
     private int id_jugador;
+    private int id_rol;
 
     public Usuario() {
     }
@@ -51,6 +52,14 @@ public class Usuario implements IRegistroEntityBase{
         this.id_jugador = id_jugador;
     }
 
+    public int getId_rol() {
+        return id_rol;
+    }
+
+    public void setId_rol(int id_rol) {
+        this.id_rol = id_rol;
+    }
+
     @Override
     public int getId() {
         return getId_usuario();
@@ -60,6 +69,5 @@ public class Usuario implements IRegistroEntityBase{
     public void setId(int id) {
         setId_usuario(id);
     }
-    
-    
+
 }

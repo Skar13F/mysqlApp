@@ -188,10 +188,7 @@ public class Registro extends JFrame implements ActionListener {
                 UsuarioController controller = new UsuarioController();
 
                 Usuario user = controller.buscarRegistoNombre(tNombreJugador.getText());
-//
                 if (user == null) {
-                    //JOptionPane.showMessageDialog(null, "Bienvenido");
-
                     JugadorController jugadorController = new JugadorController();
                     Jugador jugadorAux = new Jugador();
                     jugadorAux.setNombre(tNombreUsuario.getText());
@@ -199,25 +196,20 @@ public class Registro extends JFrame implements ActionListener {
                     jugadorAux.setSexo(cbSexo.getSelectedItem().toString());
                     jugadorAux.setTelefono(tTelefono.getText());
                     jugadorAux.setCorreo(tCorreo.getText());
-                    //JOptionPane.showMessageDialog(null, jugadorAux.getTelefono());
                     Jugador jugadorA = jugadorController.buscarRegistroTelefono(jugadorAux.getTelefono());
                     if (jugadorA == null) {
-                        //JOptionPane.showMessageDialog(null, "entró al if");
                         jugadorController.crearRegistro(jugadorAux);
                         String telefono=jugadorAux.getTelefono();
                         jugadorA = jugadorController.buscarRegistroTelefono(telefono);
-                        JOptionPane.showMessageDialog(null, "entró al if "+jugadorA);
-                        //System.out.println("jugadorA _ idJugador"+jugadorA.getId_jugador());
                         
                         Usuario userAux = new Usuario();
                         userAux.setNombre(tNombreJugador.getText());
                         userAux.setPassword(String.valueOf(jContrasenia.getPassword()));
-                        userAux.setId_usuario(-1);
+                        userAux.setId_rol(-1);
                         int idJugador=jugadorA.getId_jugador();
                         userAux.setId_jugador(idJugador);
-                        //userAux.setId_jugador(jugadorA.getId_jugador());
-                        controller.crearRegistro(userAux);
-
+                        controller.crearActualizarUsuario(userAux);
+                        
                         //creamos un registro en la tabla id_usuario_rol
                         PlantillaLogueo plantillaLogueo = new PlantillaLogueo();
                         plantillaLogueo.setVisible(true);
@@ -280,10 +272,8 @@ public class Registro extends JFrame implements ActionListener {
             @Override
             public void mouseClicked(MouseEvent e
             ) {
-
                 PlantillaLogueo logueo = new PlantillaLogueo();
                 cerrarFrame();
-                //bRegresar.setBorder(bInferiorAzul);
             }
 
         }

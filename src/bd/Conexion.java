@@ -18,12 +18,12 @@ public class Conexion {
 
     public Conexion() {
         this.driver = "com.mysql.cj.jdbc.Driver";
-        this.user = "root";
-        this.pwd = "Root.123";
-        this.url = "jdbc:mysql://";
+	this.url = "jdbc:mysql://";
         this.ip = "localhost";//172.0.0.1
         this.puerto = "3306";
         this.db = "Juego";
+        this.user = "root";
+        this.pwd = "Root.123";
     }
 
     public Connection getConnection() throws ClassNotFoundException {
@@ -31,9 +31,6 @@ public class Conexion {
             Class.forName(this.driver);
             connection = DriverManager.getConnection(this.url
                     + this.ip + ":" + this.puerto + "/" + this.db, this.user, this.pwd);
-            //System.out.println(this.url
-            //        + this.ip + ":" + this.puerto + "/" + this.db+ this.user+ this.pwd);
-            //System.out.println("Conexión exitosa");
             return connection;
         } catch (SQLException e) {
             System.out.println("Error de conexión: " + e.getMessage());

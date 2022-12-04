@@ -149,7 +149,7 @@ public class PlantillaLogueo extends JFrame implements ActionListener {
         cbTipoUsuario = new JComboBox();
         cbTipoUsuario.addItem("Invitado");
         cbTipoUsuario.addItem("Admin");
-        cbTipoUsuario.addItem("Superadmin");
+        //cbTipoUsuario.addItem("Superadmin");
         cbTipoUsuario.setSize(220, 30);
         cbTipoUsuario.setLocation((panelDerecho.getWidth() - cbTipoUsuario.getWidth()) / 2, jContrasenia.getY() + jContrasenia.getHeight() + 10);
         cbTipoUsuario.setBackground(Color.WHITE);
@@ -206,18 +206,26 @@ public class PlantillaLogueo extends JFrame implements ActionListener {
                 Usuario userAux = new Usuario();
                 userAux.setNombre(tNombreUsuario.getText());
                 userAux.setPassword(String.valueOf(jContrasenia.getPassword()));
-                userAux.setId_jugador(cbTipoUsuario.getSelectedIndex()+1);
-                
-                System.out.println(cbTipoUsuario.getSelectedItem());
-                System.out.println(userAux.getId_jugador());
+                userAux.setId_jugador(cbTipoUsuario.getSelectedIndex() + 1);//obtenemos el id del jcombobox
+
                 Usuario user = controller.buscarRegistoNC(userAux);
-                
+
                 if (user != null) {
                     //JOptionPane.showMessageDialog(null, "Bienvenido");
                     cerrarFrame();
-                    
-                    InicioJuego inicioJuego= new InicioJuego();
-                    inicioJuego.setVisible(true);
+                    if ((cbTipoUsuario.getSelectedIndex() + 1) == 1) {
+                        //InicioJuego inicioJuego= new InicioJuego();
+                        //inicioJuego.setVisible(true);
+                        PantallaJuego pantallaJuego = new PantallaJuego();
+                        pantallaJuego.setVisible(true);
+                    } else if ((cbTipoUsuario.getSelectedIndex() + 1) == 2) {
+                        //UsuarioView uv=new UsuarioView();
+                        //uv.setVisible(true);
+                        SuperAdministrador superAdministrador = new SuperAdministrador();
+                        superAdministrador.setVisible(true);
+                    }
+                    //InicioJuego inicioJuego= new InicioJuego();
+                    //inicioJuego.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(null, "Registro no encontrado");
                 }

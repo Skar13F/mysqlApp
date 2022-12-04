@@ -1,4 +1,3 @@
-
 package service;
 
 import entity.Jugador;
@@ -6,10 +5,11 @@ import java.util.List;
 import model.IJugadorModel;
 import model.JugadorModelImpl;
 
-public class JugadorServiceImpl implements IJugadorService{
+public class JugadorServiceImpl implements IJugadorService {
+
     //hacemos una instancia a la capa model
-    IJugadorModel model= new JugadorModelImpl();
-  
+    IJugadorModel model = new JugadorModelImpl();
+
     @Override
     public void insertarRegistro(Jugador registro) {
         model.insertarRegistro(registro);
@@ -36,14 +36,8 @@ public class JugadorServiceImpl implements IJugadorService{
     }
 
     @Override
-    public Jugador buscarRegistro(Jugador registro) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public Jugador buscarRegistro(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
+
 }

@@ -1,23 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package view;
 
 import controller.JugadorController;
 import entity.Jugador;
 
-/**
- *
- * @author labingsw02
- */
 public class JugadorView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JugadorView
-     */
+    private JugadorController jugadorController;
+    
     public JugadorView() {
         initComponents();
+        jugadorController=new JugadorController();
+        jugadorController.init();
+        
     }
 
     /**

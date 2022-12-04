@@ -8,7 +8,6 @@ public interface IRegistroServiceBase <T>{
     public List<T> obtenerRegistro();
     public void eliminarRegistro(int id);
     public T buscarRegistro(int id);
-    public T buscarRegistro(T registro);
     public T buscarRegistro(String nombre);
     public void actualizarRegistro(T registro);
 }
