@@ -14,6 +14,7 @@ public class RolView extends javax.swing.JFrame {
 
     private DefaultTableModel modelo;
     private int idRol;
+    private String rolNombre;
     //se declara la variable de tipo rolController
     private RolController rolController;
 
@@ -179,10 +180,11 @@ public class RolView extends javax.swing.JFrame {
     }//GEN-LAST:event_botonGuardarMouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        Rol rol = rolController.buscarRegistro(Integer.parseInt(jTextField1.getText()));
+        Rol rol = rolController.buscarRegistro(jTextField1.getText());
         if (rol != null) {
-            Icon icono = new ImageIcon(getClass().getResource("usuario2.png"));
-            JOptionPane.showMessageDialog(null, rol.getIdRol() + " " + rol.getRol(), null, JOptionPane.DEFAULT_OPTION, icono);
+//            Icon icono = new ImageIcon(getClass().getResource("usuario2.png"));
+//            JOptionPane.showMessageDialog(null, rol.getIdRol() + " " + rol.getRol(), null, JOptionPane.DEFAULT_OPTION, icono);
+               JOptionPane.showMessageDialog(null, rol.getIdRol() + " " + rol.getRol());
         } else {
             JOptionPane.showMessageDialog(null, "Registro no encontrado");
         }
@@ -190,9 +192,10 @@ public class RolView extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         idRol = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        rolNombre = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
         jTextField1.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
         if (evt.getClickCount() == 2) {
-            Rol rol = rolController.buscarRegistro(idRol);
+            Rol rol = rolController.buscarRegistro(rolNombre);
             Icon icono = new ImageIcon("/resourse/images/usuario2.png");
             JOptionPane.showMessageDialog(null, rol.getIdRol() + " " + rol.getRol(), null, JOptionPane.DEFAULT_OPTION, icono);
         }

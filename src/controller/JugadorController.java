@@ -34,6 +34,7 @@ public class JugadorController extends RegistroControllerBase<Jugador>{
     }
     
     public Jugador buscarRegistroTelefono(String telefono){      
+        System.out.println("Entró a jugadorController");
         return  service.buscarRegistro(telefono);
     }
     

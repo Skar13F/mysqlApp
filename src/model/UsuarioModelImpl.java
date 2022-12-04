@@ -31,7 +31,7 @@ public class UsuarioModelImpl implements IUsuarioModel {
                     Connection connection1 = conexion1.getConnection();
                     Usuario usuario1 = this.buscarRegistro(usuario.getNombre());
                     int idUsuario = usuario1.getId_usuario();
-                    int idRol = Math.abs(usuario.getId_usuario());
+                    int idRol = usuario.getId_rol();//Math.abs(usuario.getId_usuario());
                     String query1 = "CALL insertar_Usuario_rol('" + idUsuario + "','" + idRol + "')";
                     Statement stm1 = connection1.createStatement();
                     stm1.execute(query1);

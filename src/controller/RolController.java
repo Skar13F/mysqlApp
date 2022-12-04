@@ -33,8 +33,8 @@ public class RolController extends RegistroControllerBase<Rol> {
         }
     }
 
-    public Rol buscarRegistro(int id) {
-        return service.buscarRegistro(id);
+    public Rol buscarRegistro(String rol) {
+        return service.buscarRegistro(rol);
     }
 
     public void eliminarRegistro(int id) {

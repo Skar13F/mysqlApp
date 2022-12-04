@@ -1,6 +1,7 @@
 package view;
 
 import controller.UsuarioController;
+import entity.Rol;
 import entity.Usuario;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -14,6 +15,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,6 +28,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import service.RolServiceImpl;
 
 public class PlantillaLogueo extends JFrame implements ActionListener {
 
@@ -147,8 +150,9 @@ public class PlantillaLogueo extends JFrame implements ActionListener {
         });
 
         cbTipoUsuario = new JComboBox();
-        cbTipoUsuario.addItem("Invitado");
-        cbTipoUsuario.addItem("Admin");
+        //cbTipoUsuario.addItem("Invitado");
+        //cbTipoUsuario.addItem("Admin");
+        addItem(cbTipoUsuario);
         //cbTipoUsuario.addItem("Superadmin");
         cbTipoUsuario.setSize(220, 30);
         cbTipoUsuario.setLocation((panelDerecho.getWidth() - cbTipoUsuario.getWidth()) / 2, jContrasenia.getY() + jContrasenia.getHeight() + 10);
@@ -327,6 +331,13 @@ public class PlantillaLogueo extends JFrame implements ActionListener {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resourses/fonts/LUZRO.TTF")));
         } catch (Exception e) {
+        }
+    }
+    public void addItem(JComboBox jcRol){
+        RolServiceImpl impl=new RolServiceImpl();
+        List<Rol> listaRol=impl.obtenerRegistro();
+        for (Rol rol : listaRol) {
+            jcRol.addItem(rol.getRol());
         }
     }
 

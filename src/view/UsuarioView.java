@@ -3,26 +3,45 @@ package view;
 import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
 import com.jtattoo.plaf.aero.AeroLookAndFeel;
 import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
+import controller.JugadorController;
+import controller.RolController;
 import controller.UsuarioController;
+import entity.Jugador;
+import entity.Rol;
 import entity.Usuario;
+import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
+import service.JugadorServiceImpl;
+import service.RolServiceImpl;
 
 public class UsuarioView extends javax.swing.JFrame {
 
     private DefaultTableModel modelo;
     private int idUsuario;
     private UsuarioController userController;
+    private RolController rolController;
+    private JugadorController jugadorController;
     public UsuarioView() {
         initComponents();
         modelo = (DefaultTableModel) jTable1.getModel();
         userController = new UsuarioController();
+        rolController= new RolController();
+        jugadorController=new JugadorController();
         userController.init();
+        jugadorController.init();
+        userController.init();
+        rolController.init();
         userController.mostrarRegistros(modelo);
+        
+        
+        addItemRol(cbRol);
+        addItemJugador(cbTelefono);
     }
 
     @SuppressWarnings("unchecked")
@@ -185,8 +204,19 @@ public class UsuarioView extends javax.swing.JFrame {
     private void botonGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarMouseClicked
         //UsuarioController controller = new UsuarioController();
         Usuario usuario = new Usuario();
+        Jugador jugador=new Jugador();
+        String telefono=cbTelefono.getSelectedItem().toString();
+        String rolA=cbRol.getSelectedItem().toString();
+        
+        System.out.println(telefono+rolA);
+        jugador=jugadorController.buscarRegistroTelefono("9515678146");
+        Rol rol=rolController.buscarRegistro(rolA);
+        
         usuario.setNombre(this.jTextField1.getText());
         usuario.setPassword(String.valueOf(jPasswordField1.getPassword()));
+        usuario.setId_jugador(jugador.getId_jugador());
+        usuario.setId_rol(rol.getIdRol());
+        
         userController.crearActualizarUsuario(usuario);
         userController.mostrarRegistros(modelo);
     }//GEN-LAST:event_botonGuardarMouseClicked
@@ -195,7 +225,7 @@ public class UsuarioView extends javax.swing.JFrame {
         idUsuario = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
         jTextField1.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
         jPasswordField1.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
-        UsuarioController controller = new UsuarioController();
+        
 
 //        if (evt.getClickCount() == 2) {
 //            Usuario usuario = controller.buscarRegistro(idUsuario);
@@ -240,6 +270,22 @@ public class UsuarioView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonGuardarActionPerformed
 
+    public void addItemRol(JComboBox jcB){
+        RolServiceImpl impl=new RolServiceImpl();
+        List<Rol> listaRol=impl.obtenerRegistro();
+        for (Rol rol : listaRol) {
+            jcB.addItem(rol.getRol());
+        }
+    }
+    
+    public void addItemJugador(JComboBox jcB){
+        JugadorServiceImpl impl=new JugadorServiceImpl();
+        List<Jugador> listaJugador=impl.obtenerRegistro();
+        for (Jugador rol : listaJugador) {
+            jcB.addItem(rol.getTelefono());
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

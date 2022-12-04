@@ -26,8 +26,8 @@ public class RolServiceImpl implements IRolService {
     }
 
     @Override
-    public Rol buscarRegistro(int id) {
-        return model.buscarRegistro(id);
+    public Rol buscarRegistro(String rol) {
+        return model.buscarRegistro(rol);
     }
 
     @Override
@@ -36,8 +36,9 @@ public class RolServiceImpl implements IRolService {
     }
 
     @Override
-    public Rol buscarRegistro(String nombre) {
+    public Rol buscarRegistro(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 
 }

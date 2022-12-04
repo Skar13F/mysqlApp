@@ -69,21 +69,21 @@ public class RolModelImpl implements IRolModel {
     }
 
     @Override
-    public Rol buscarRegistro(int id) {
+    public Rol buscarRegistro(String rol) {
         try {
-            Rol rol = new Rol();
+            Rol rolConsulta = new Rol();
             ResultSet rs;
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
-            String query = "CALL buscarRegistro('" + id + "')";
+            String query = "CALL buscarRegistro('" + rol + "')";
             stm = connection.createStatement();
             rs = stm.executeQuery(query);
             rs.next();
-            rol.setIdRol(rs.getInt(1));// o se pude hacer rol.setIdRol(rs.getInt("idRol"));
-            rol.setRol(rs.getString(2));// o se pude hacer rol.setRol(rs.getString("rol"));
+            rolConsulta.setIdRol(rs.getInt(1));// o se pude hacer rol.setIdRol(rs.getInt("idRol"));
+            rolConsulta.setRol(rs.getString(2));// o se pude hacer rol.setRol(rs.getString("rol"));
             stm.close();
             connection.close();
-            return rol;
+            return rolConsulta;
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             return null;
