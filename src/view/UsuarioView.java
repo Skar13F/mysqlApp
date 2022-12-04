@@ -204,12 +204,12 @@ public class UsuarioView extends javax.swing.JFrame {
     private void botonGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarMouseClicked
         //UsuarioController controller = new UsuarioController();
         Usuario usuario = new Usuario();
-        Jugador jugador=new Jugador();
+        
         String telefono=cbTelefono.getSelectedItem().toString();
         String rolA=cbRol.getSelectedItem().toString();
         
         
-        jugador=jugadorController.buscarRegistroTelefono("9515678146");
+        Jugador jugador=jugadorController.buscarRegistroTelefono(telefono);
         Rol rol=rolController.buscarRegistro(rolA);
         
         usuario.setNombre(this.jTextField1.getText());
@@ -246,11 +246,19 @@ public class UsuarioView extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEliminarMouseClicked
 
     private void botonActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseClicked
-        //UsuarioController controller = new UsuarioController();
+        String telefono=cbTelefono.getSelectedItem().toString();
+        String rolA=cbRol.getSelectedItem().toString();
+        
+        Jugador jugador=jugadorController.buscarRegistroTelefono(telefono);
+        Rol rol=rolController.buscarRegistro(rolA);
         Usuario usuario = new Usuario();
+        
         usuario.setId_usuario(idUsuario);
         usuario.setNombre(jTextField1.getText());
         usuario.setPassword(String.valueOf(jPasswordField1.getPassword()));
+        usuario.setId_jugador(jugador.getId_jugador());
+        usuario.setId_rol(rol.getIdRol());
+        
         userController.crearActualizarUsuario(usuario);
         userController.mostrarRegistros(modelo);
         

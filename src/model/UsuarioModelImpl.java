@@ -114,12 +114,26 @@ public class UsuarioModelImpl implements IUsuarioModel {
         try {
             conexion = new Conexion();//se establecen los valores de la bd
             connection = conexion.getConnection();// se obtiene la conexión a la bd
-            int id_usuario=usuario.getId_usuario();
-            String query = "CALL actualizarUsuario('" + usuario.getNombre() + "','" + usuario.getPassword() + "','" + id_usuario + "')";
+            int id_usuario = usuario.getId_usuario();
+            int id_jugador = usuario.getId_jugador();
+            String query = "CALL actualizarUsuario('" + usuario.getNombre() + "','" + usuario.getPassword() + "','" + id_jugador + "','" + id_usuario + "')";
             stm = connection.createStatement();
             stm.execute(query);
             stm.close();
             connection.close();
+            try {
+                    Conexion conexion1 = new Conexion();
+                    Connection connection1 = conexion1.getConnection();
+                    int idUsuario = usuario.getId_usuario();
+                    int idRol = usuario.getId_rol();
+                    String query1 = "CALL insertar_Usuario_rol('" + idUsuario + "','" + idRol + "')";
+                    Statement stm1 = connection1.createStatement();
+                    stm1.execute(query1);
+                    stm1.close();
+                    connection1.close();
+                } catch (Exception e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }

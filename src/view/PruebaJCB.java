@@ -4,8 +4,10 @@ package view;
 import controller.JugadorController;
 import entity.Rol;
 import entity.Jugador;
+import entity.Usuario;
 import java.util.List;
 import javax.swing.JComboBox;
+import model.UsuarioModelImpl;
 import service.JugadorServiceImpl;
 import service.RolServiceImpl;
 import service.UsuarioServiceImpl;
@@ -90,9 +92,16 @@ public class PruebaJCB extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         System.out.println(jComboBox1.getSelectedItem().toString());
-        Jugador jugador=new Jugador();
-        jugador.setTelefono(jcUsuario.getSelectedItem().toString());
-        Jugador jugadorA = jugadorController.buscarRegistroTelefono(jugador.getTelefono());
+        Usuario user=new Usuario();
+        
+        user.setId(7);
+        user.setId_rol(2);
+        user.setId_jugador(1);
+        user.setNombre("Oscar3");
+        user.setPassword("12");
+        
+        UsuarioModelImpl uim= new UsuarioModelImpl();
+        uim.actualizarRegistro(user);
         
     }//GEN-LAST:event_jButton1MouseClicked
 
