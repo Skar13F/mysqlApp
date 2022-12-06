@@ -1,6 +1,19 @@
+/**
+ * Autor: Oscar Fuentes Alvarado
+ * Fecha de creación: 25 de noviembre de 2022
+ * Fecha de actualización: 05 de diciembre de 2022
+ * Descripción: clase que modela al objeto abstracto persona, el cual contiene
+ *              una variable de tipo String que guardará el nombre que le
+ *              corresponde a la persona, un int para la edad, un String para
+ *              el sexo, un string para el teléfono, un String para el correo.
+ */
 package entity;
 
 public class Persona {
+
+    /**
+     * Declaración de variables
+     */
     private String nombre;
     private int edad;
     private String sexo;
@@ -8,6 +21,9 @@ public class Persona {
     private String correo;
     private String direccion;
 
+    /**
+     * Métodos get y set de los atributos
+     */
     public String getNombre() {
         return nombre;
     }

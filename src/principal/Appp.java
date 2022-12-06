@@ -2,7 +2,7 @@
 package principal;
 
 import javax.swing.SwingUtilities;
-import view.InicioJuego;
+
 import view.Registro;
 
 public class Appp {

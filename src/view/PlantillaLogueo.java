@@ -54,8 +54,13 @@ public class PlantillaLogueo extends JFrame implements ActionListener {
     private Font fontMedia;
 
     private JComboBox cbTipoUsuario;
+    
+    private UsuarioController usuarioController;
 
     public PlantillaLogueo() {
+        usuarioController=new UsuarioController();
+        usuarioController.init();
+        
         //cursores
         this.cMano = new Cursor(Cursor.HAND_CURSOR);
 
@@ -206,13 +211,13 @@ public class PlantillaLogueo extends JFrame implements ActionListener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 bIngresar.setBorder(bInferiorAzul);
-                UsuarioController controller = new UsuarioController();
+                
                 Usuario userAux = new Usuario();
                 userAux.setNombre(tNombreUsuario.getText());
                 userAux.setPassword(String.valueOf(jContrasenia.getPassword()));
                 userAux.setId_jugador(cbTipoUsuario.getSelectedIndex() + 1);//obtenemos el id del jcombobox
-
-                Usuario user = controller.buscarRegistoNC(userAux);
+                usuarioController.init();
+                Usuario user = usuarioController.buscarRegistoNC(userAux);
 
                 if (user != null) {
                     //JOptionPane.showMessageDialog(null, "Bienvenido");

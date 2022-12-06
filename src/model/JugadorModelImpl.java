@@ -48,8 +48,7 @@ public class JugadorModelImpl implements IJugadorModel {
                 jugador.setEdad(Integer.parseInt(rs.getString(3)));
                 jugador.setSexo(rs.getString(4));
                 jugador.setTelefono(rs.getString(5));
-                jugador.setDireccion(rs.getString(6));
-                jugador.setPuntos(Integer.parseInt(rs.getString(3)));
+                //jugador.setPuntos(Integer.parseInt(rs.getString(3)));
                 listaJugador.add(jugador);
             }
             stm.close();
